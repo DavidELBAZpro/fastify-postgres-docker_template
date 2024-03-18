@@ -12,6 +12,9 @@ const { log } = require('console')
 const swaggerDocument = require('./swagger.json')
 require('dotenv').config()
 
+fastify.register(require('@fastify/cors'), {
+    origin: true
+})
 // fastify.register(require('fastify-swagger'), {
 //     exposeRoute: true,
 //     routePrefix: '/documentation',
@@ -77,6 +80,7 @@ const start = async () => {
         console.log(`Server listening on ${fastify.server.address().port}`)
         console.log('The connection string for DB:', connectionString)
         console.log('The credentials:', process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, process.env.POSTGRES_DB)
+        console.log('UPDATE1 AVEC CORS ')
 
     } catch (err) {
         fastify.log.error(err)
