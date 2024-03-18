@@ -1,0 +1,23 @@
+{
+    "name": "fastify-postgresql-docker",
+    "version": "1.0.0",
+    "description": "Une application Fastify avec Swagger, PostgreSQL et Docker",
+    "main": "server.js",
+    "scripts": {
+        "start": "nodemon server.js",
+        "dev": "nodemon server.js"
+    },
+    "dependencies": {
+        "@fastify/postgres": "^5.2.2",
+        "dotenv": "^16.4.5",
+        "fastify": "^4.26.2",
+        "fastify-static": "^4.7.0",
+        "fastify-swagger": "^4.0.0",
+        "pino-pretty": "^10.3.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.0"
+    },
+    "author": "David ELBAZ",
+    "license": "ISC"
+}
