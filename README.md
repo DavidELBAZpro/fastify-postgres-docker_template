@@ -22,3 +22,4 @@ npm run start
 
 docker-compose up --build
 ```
+Swagger file available for GET/POST/PATCH/DELETE methods 
