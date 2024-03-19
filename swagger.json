@@ -1,9 +1,10 @@
+
 {
   "swagger": "2.0",
   "info": {
     "title": "Fastify API",
     "version": "1.0.0",
-    "description": "Une API Fastify avec Swagger"
+    "description": "A Fastify API with Swagger documentation"
   },
   "host": "localhost:1605",
   "basePath": "/",
@@ -11,11 +12,11 @@
   "paths": {
     "/": {
       "get": {
-        "summary": "Page d'accueil",
-        "description": "Retourne un objet JSON d'accueil",
+        "summary": "Home Page",
+        "description": "Returns a JSON object for the home page",
         "responses": {
           "200": {
-            "description": "Succès",
+            "description": "Success",
             "schema": {
               "type": "object",
               "properties": {
@@ -30,11 +31,11 @@
     },
     "/items": {
       "get": {
-        "summary": "Liste tous les items",
-        "description": "Récupère une liste de tous les items",
+        "summary": "List all items",
+        "description": "Retrieves a list of all items",
         "responses": {
           "200": {
-            "description": "Une liste des items",
+            "description": "A list of items",
             "schema": {
               "type": "array",
               "items": {
@@ -56,15 +57,15 @@
         }
       },
       "post": {
-        "summary": "Crée un nouvel item",
-        "description": "Ajoute un nouvel item à la liste",
+        "summary": "Create a new item",
+        "description": "Adds a new item to the list",
         "consumes": ["application/json"],
         "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
             "name": "item",
-            "description": "Objet item à ajouter",
+            "description": "Item object to add",
             "required": true,
             "schema": {
               "type": "object",
@@ -82,7 +83,7 @@
         ],
         "responses": {
           "201": {
-            "description": "Item créé avec succès",
+            "description": "Item successfully created",
             "schema": {
               "type": "object",
               "properties": {
@@ -97,6 +98,119 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/items/{id}": {
+      "get": {
+        "summary": "Get an item by its ID",
+        "description": "Retrieves a specific item by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the item to retrieve",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Item not found"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Modify an item by its ID",
+        "description": "Modifies the name and/or description of a specific item by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the item to modify",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Fields of the item to modify",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Item successfully modified",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Item not found"
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an item by its ID",
+        "description": "Deletes a specific item by its ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the item to delete",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully deleted, no content to return"
+          },
+          "404": {
+            "description": "Item not found"
           }
         }
       }
